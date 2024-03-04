@@ -1,5 +1,5 @@
 {
-  "name": "test-support",
+  "name": "@universal-ember/test-support",
   "version": "0.0.0",
   "description": "The default blueprint for Embroider v2 addons.",
   "keywords": [
@@ -49,6 +49,7 @@
     "test": "echo 'A v2 addon does not have tests, run tests in test-app'"
   },
   "dependencies": {
+    "@ember/test-helpers": "^3.2.1",
     "@embroider/addon-shim": "^1.8.7",
     "decorator-transforms": "^1.0.1"
   },
@@ -84,6 +85,7 @@
     "@types/ember__template": "^4.0.5",
     "@types/ember__test": "^4.0.5",
     "@types/ember__utils": "^4.0.6",
+    "@types/qunit": "^2.19.10",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "babel-plugin-ember-template-compilation": "^2.2.1",
@@ -96,6 +98,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.1.1",
     "prettier-plugin-ember-template-tag": "^1.1.0",
+    "qunit": "^2.20.1",
     "rollup": "^4.9.1",
     "rollup-plugin-copy": "^3.5.0",
     "typescript": "^5.3.3"
@@ -109,6 +112,10 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "addon-main.cjs"
+    "main": "addon-main.cjs",
+    "app-js": {}
+  },
+  "peerDependencies": {
+    "qunit": "^2.20.1"
   }
 }
