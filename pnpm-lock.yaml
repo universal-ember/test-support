@@ -149,6 +149,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.19.1
         version: 6.21.0(eslint@8.57.0)(typescript@5.3.3)
+      '@universal-ember/test-support':
+        specifier: workspace:*
+        version: link:../test-support
       broccoli-asset-rev:
         specifier: ^3.0.0
         version: 3.0.0
@@ -257,9 +260,6 @@ importers:
       stylelint-prettier:
         specifier: ^4.1.0
         version: 4.1.0(prettier@3.2.5)(stylelint@15.11.0)
-      test-support:
-        specifier: workspace:*
-        version: link:../test-support
       tracked-built-ins:
         specifier: ^3.3.0
         version: 3.3.0
