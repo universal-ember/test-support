@@ -22,7 +22,7 @@
     "lint:js:fix": "eslint . --fix",
     "lint:types": "tsc --noEmit",
     "start": "ember serve",
-    "test": "concurrently \"npm:lint\" \"npm:test:*\" --names \"lint,test:\"",
+    "test": "ember test",
     "test:ember": "ember test"
   },
   "devDependencies": {
@@ -66,6 +66,7 @@
     "@types/rsvp": "^4.0.9",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "@universal-ember/test-support": "workspace:*",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.2.2",
     "ember-auto-import": "^2.7.2",
@@ -102,7 +103,6 @@
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-prettier": "^4.1.0",
-    "@universal-ember/test-support": "workspace:*",
     "tracked-built-ins": "^3.3.0",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0"
@@ -112,6 +112,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-primitives": "^0.11.3"
   }
 }
-
