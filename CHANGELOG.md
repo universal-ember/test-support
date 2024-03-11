@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2024-03-11)
+
+@universal-ember/test-support 0.1.1 (patch)
+
+#### :bug: Bug Fix
+* `test-app`, `@universal-ember/test-support`
+  * [#7](https://github.com/universal-ember/test-support/pull/7) Ignore hash URLs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2024-03-05)
 
 @universal-ember/test-support 0.1.0 (minor)

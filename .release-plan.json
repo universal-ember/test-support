@@ -1,17 +1,17 @@
 {
   "solution": {
     "@universal-ember/test-support": {
-      "impact": "minor",
-      "oldVersion": "0.0.0",
-      "newVersion": "0.1.0",
+      "impact": "patch",
+      "oldVersion": "0.1.0",
+      "newVersion": "0.1.1",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2024-03-05)\n\n@universal-ember/test-support 0.1.0 (minor)\n\n#### :rocket: Enhancement\n* `test-app`, `@universal-ember/test-support`\n  * [#6](https://github.com/universal-ember/test-support/pull/6) Require that links clicked are defined in the app, this means that @properLinks would no longer be required ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2024-03-11)\n\n@universal-ember/test-support 0.1.1 (patch)\n\n#### :bug: Bug Fix\n* `test-app`, `@universal-ember/test-support`\n  * [#7](https://github.com/universal-ember/test-support/pull/7) Ignore hash URLs ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
