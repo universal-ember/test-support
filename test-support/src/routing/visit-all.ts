@@ -47,7 +47,21 @@ export async function visitAllLinks() {
       continue;
     }
 
-    const key = `${currentURL()}::${toVisit}`;
+    // In-page links are on the page we're already on.
+    // As long as we haven't already encountered an error,
+    // this is silly to check.
+    if (toVisit.startsWith('#')) {
+      continue;
+    }
+
+    const [nonHashPart] = toVisit.split('#');
+
+    // This was our first page, we've already been here
+    if (nonHashPart === '/') {
+      continue;
+    }
+
+    const key = `${currentURL()}::${nonHashPart}`;
 
     if (visited.has(key)) continue;
 
