@@ -114,6 +114,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "ember-primitives": "^0.11.3"
+    "ember-primitives": "^0.11.3",
+    "expect-type": "^0.18.0"
   }
 }
