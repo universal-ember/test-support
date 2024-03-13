@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2024-03-13)
+
+@universal-ember/test-support 0.2.0 (minor)
+
+#### :rocket: Enhancement
+* `test-app`, `@universal-ember/test-support`
+  * [#9](https://github.com/universal-ember/test-support/pull/9) Add getService ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2024-03-11)
 
 @universal-ember/test-support 0.1.1 (patch)
