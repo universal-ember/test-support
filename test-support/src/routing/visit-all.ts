@@ -11,11 +11,32 @@ import QUnit from 'qunit';
 import type Owner from '@ember/owner';
 import type RouterService from '@ember/routing/router-service';
 
-function findInAppLinks(): string[] {
-  return (findAll('a')
-    ?.map((link) => link.getAttribute('href'))
-    ?.filter((href) => !href?.startsWith('http'))
-    .filter(Boolean) || []) as string[];
+interface InAppLink {
+  href: string;
+  original: string;
+  selector: string;
+}
+
+function findInAppLinks(): InAppLink[] {
+  const results: InAppLink[] = [];
+
+  for (const a of findAll('a')) {
+    const href = a.getAttribute('href');
+    if (!href?.startsWith('http')) {
+      continue;
+    }
+
+    const url = new URL(href, window.location.href);
+    const withoutDomain = `${url.pathname}${url.search}${url.hash}`;
+
+    results.push({
+      href: withoutDomain,
+      original: href,
+      selector: `a[href="${href}"]`,
+    });
+  }
+
+  return results;
 }
 
 const assert = QUnit.assert;
@@ -32,7 +53,7 @@ export async function visitAllLinks(
   await visit(returnTo);
 
   const inAppLinks = findInAppLinks();
-  const queue: (string | { changeReturnTo: string })[] = [...inAppLinks];
+  const queue: (InAppLink | { changeReturnTo: string })[] = [...inAppLinks];
 
   const ctx = getContext() as unknown as { owner: Owner };
   const router = ctx?.owner?.lookup('service:router') as RouterService;
@@ -44,7 +65,7 @@ export async function visitAllLinks(
 
     debugAssert(`Queue entries cannot be falsey`, toVisit);
 
-    if (typeof toVisit === 'object' && toVisit !== null) {
+    if ('changeReturnTo' in toVisit) {
       returnTo = toVisit.changeReturnTo;
       continue;
     }
@@ -52,11 +73,11 @@ export async function visitAllLinks(
     // In-page links are on the page we're already on.
     // As long as we haven't already encountered an error,
     // this is silly to check.
-    if (toVisit.startsWith('#')) {
+    if (toVisit.original.startsWith('#')) {
       continue;
     }
 
-    const [nonHashPart] = toVisit.split('#');
+    const [nonHashPart] = toVisit.href.split('#');
 
     // This was our first page, we've already been here
     if (nonHashPart === '/') {
@@ -67,7 +88,7 @@ export async function visitAllLinks(
 
     if (visited.has(key)) continue;
 
-    const result = router.recognize(toVisit);
+    const result = router.recognize(toVisit.href);
 
     if (!result) {
       assert.ok(
@@ -85,13 +106,13 @@ export async function visitAllLinks(
 
     await click(link);
     assert.ok(
-      currentURL().startsWith(toVisit),
-      `Navigation was successful: to:${toVisit}, from:${returnTo}`,
+      currentURL().startsWith(toVisit.href),
+      `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
     );
     visited.add(key);
 
     if (callback) {
-      await callback(toVisit);
+      await callback(toVisit.href);
     }
 
     const links = findInAppLinks();
