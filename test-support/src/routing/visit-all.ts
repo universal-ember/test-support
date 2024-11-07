@@ -20,12 +20,13 @@ interface InAppLink {
 function findInAppLinks(): InAppLink[] {
   const results: InAppLink[] = [];
 
-  debugger;
-  for (const a of findAll('a')) {
+  const allAnchorsOnThePage = findAll('a');
+
+  for (const a of allAnchorsOnThePage) {
     const href = a.getAttribute('href');
-    if (!href?.startsWith('http')) {
-      continue;
-    }
+
+    if (!href) continue;
+    if (href.startsWith('http')) continue;
 
     const url = new URL(href, window.location.href);
     const withoutDomain = `${url.pathname}${url.search}${url.hash}`;
@@ -94,16 +95,16 @@ export async function visitAllLinks(
     if (!result) {
       assert.ok(
         true,
-        `${toVisit} on page ${returnTo} is not recognized by this app and will be skipped`,
+        `${toVisit.href} on page ${returnTo} is not recognized by this app and will be skipped`,
       );
       continue;
     }
 
     await visit(returnTo);
 
-    const link = find(`a[href="${toVisit}"]`);
+    const link = find(toVisit.selector);
 
-    debugAssert(`link exists with ${toVisit}`, link);
+    debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
 
     await click(link);
     assert.ok(

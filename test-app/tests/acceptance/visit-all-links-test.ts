@@ -12,6 +12,8 @@ module('All Links', function (hooks) {
       assert.ok(url);
     });
 
+    assert.ok(size1 > 0, 'The test app has links');
+    assert.ok(size2 > 0, 'The test app has links');
     assert.strictEqual(
       size1,
       size2,
