@@ -20,6 +20,7 @@ interface InAppLink {
 function findInAppLinks(): InAppLink[] {
   const results: InAppLink[] = [];
 
+  debugger;
   for (const a of findAll('a')) {
     const href = a.getAttribute('href');
     if (!href?.startsWith('http')) {
