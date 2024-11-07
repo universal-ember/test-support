@@ -67,7 +67,6 @@
     "@types/rsvp": "^4.0.9",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
-    "@universal-ember/test-support": "workspace:*",
     "broccoli-asset-rev": "^3.0.0",
     "concurrently": "^8.2.2",
     "ember-auto-import": "^2.10.0",
@@ -111,7 +110,13 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@universal-ember/test-support": "workspace:*",
     "ember-primitives": "^0.11.3",
     "expect-type": "^0.18.0"
+  },
+  "dependenciesMeta": {
+    "@universal-ember/test-support": {
+      "injected": true
+    }
   }
 }

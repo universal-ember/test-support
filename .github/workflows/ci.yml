@@ -19,10 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
-      - name: Lint
-        run: pnpm lint
-      - name: Run Tests
-        run: pnpm test:ember
+      - run: pnpm i -f # force sync (injected dep)
+      - run: pnpm lint
+      - run: pnpm test:ember
 
   try-scenarios:
     name: ${{ matrix.try-scenario }}
@@ -42,6 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
+      - run: pnpm i -f # force sync (injected dep)
       - name: Run Tests
         run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
         working-directory: test-app
