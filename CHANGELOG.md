@@ -8,7 +8,7 @@
 * `test-app`, `@universal-ember/test-support`
   * [#45](https://github.com/universal-ember/test-support/pull/45) Support relative links ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
 * `@universal-ember/test-support`
-  * [#44](https://github.com/universal-ember/test-support/pull/44) Add callback to visitAllLinks for customer assertions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#44](https://github.com/universal-ember/test-support/pull/44) Add callback to visitAllLinks for custome assertions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
 
 #### :house: Internal
 * Other
