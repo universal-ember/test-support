@@ -2,16 +2,20 @@
   "solution": {
     "@universal-ember/test-support": {
       "impact": "minor",
-      "oldVersion": "0.1.1",
-      "newVersion": "0.2.0",
+      "oldVersion": "0.2.0",
+      "newVersion": "0.3.0",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2024-03-13)\n\n@universal-ember/test-support 0.2.0 (minor)\n\n#### :rocket: Enhancement\n* `test-app`, `@universal-ember/test-support`\n  * [#9](https://github.com/universal-ember/test-support/pull/9) Add getService ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2024-11-07)\n\n@universal-ember/test-support 0.3.0 (minor)\n\n#### :rocket: Enhancement\n* `test-app`, `@universal-ember/test-support`\n  * [#45](https://github.com/universal-ember/test-support/pull/45) Support relative links ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* `@universal-ember/test-support`\n  * [#44](https://github.com/universal-ember/test-support/pull/44) Add callback to visitAllLinks for customer assertions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* Other\n  * [#49](https://github.com/universal-ember/test-support/pull/49) Update release plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#47](https://github.com/universal-ember/test-support/pull/47) Upgrade pnpm ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* `test-app`, `@universal-ember/test-support`\n  * [#46](https://github.com/universal-ember/test-support/pull/46) Only use embroider in the test app ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* `test-app`\n  * [#48](https://github.com/universal-ember/test-support/pull/48) Fix ember try ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
