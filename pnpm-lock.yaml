@@ -26,6 +26,9 @@ importers:
 
   test-app:
     dependencies:
+      '@universal-ember/test-support':
+        specifier: workspace:*
+        version: file:test-support(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
       ember-primitives:
         specifier: ^0.11.3
         version: 0.11.4(no2omfqxpnewtusjr4t6jqihzu)
@@ -162,9 +165,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.19.1
         version: 6.21.0(eslint@8.57.1)(typescript@5.6.3)
-      '@universal-ember/test-support':
-        specifier: workspace:*
-        version: link:../test-support
       broccoli-asset-rev:
         specifier: ^3.0.0
         version: 3.0.0
@@ -270,6 +270,9 @@ importers:
       webpack:
         specifier: ^5.89.0
         version: 5.96.1
+    dependenciesMeta:
+      '@universal-ember/test-support':
+        injected: true
 
   test-support:
     dependencies:
@@ -2006,6 +2009,12 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@universal-ember/test-support@file:test-support':
+    resolution: {directory: test-support, type: directory}
+    peerDependencies:
+      ember-source: '>= 3.28'
+      qunit: ^2.20.1
 
   '@warp-drive/build-config@0.0.0-beta.7':
     resolution: {integrity: sha512-EHBWwNTv62OA9C24VEEeU04A2JNkMYiJjkA/cXnuQeM0/HSYyki4vtHtCjFXGG397KUpS0bkFBzzfXivHof9yA==}
@@ -9314,6 +9323,18 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@universal-ember/test-support@file:test-support(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)':
+    dependencies:
+      '@ember/test-helpers': 4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5))
+      '@embroider/addon-shim': 1.9.0
+      decorator-transforms: 1.2.1(@babel/core@7.26.0)
+      ember-source: 5.12.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)
+      qunit: 2.22.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@glint/template'
+      - supports-color
 
   '@warp-drive/build-config@0.0.0-beta.7(@glint/template@1.5.0)':
     dependencies:
