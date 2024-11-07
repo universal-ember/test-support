@@ -120,4 +120,6 @@ export async function visitAllLinks(
     queue.push({ changeReturnTo: currentURL() });
     queue.push(...links);
   }
+
+  return visited.size;
 }
