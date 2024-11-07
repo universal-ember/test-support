@@ -20,7 +20,9 @@ function findInAppLinks(): string[] {
 
 const assert = QUnit.assert;
 
-export async function visitAllLinks() {
+export async function visitAllLinks(
+  callback?: (url: string) => void | Promise<void>,
+) {
   /**
    * string of "on::target"
    */
@@ -87,6 +89,10 @@ export async function visitAllLinks() {
       `Navigation was successful: to:${toVisit}, from:${returnTo}`,
     );
     visited.add(key);
+
+    if (callback) {
+      await callback(toVisit);
+    }
 
     const links = findInAppLinks();
 
