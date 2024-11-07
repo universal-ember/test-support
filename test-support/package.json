@@ -116,6 +116,7 @@
     "app-js": {}
   },
   "peerDependencies": {
+    "ember-source": ">= 3.28",
     "qunit": "^2.20.1"
   }
 }
