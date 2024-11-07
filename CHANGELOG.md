@@ -1,5 +1,27 @@
 # Changelog
 
+## Release (2024-11-07)
+
+@universal-ember/test-support 0.3.0 (minor)
+
+#### :rocket: Enhancement
+* `test-app`, `@universal-ember/test-support`
+  * [#45](https://github.com/universal-ember/test-support/pull/45) Support relative links ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* `@universal-ember/test-support`
+  * [#44](https://github.com/universal-ember/test-support/pull/44) Add callback to visitAllLinks for customer assertions ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* Other
+  * [#49](https://github.com/universal-ember/test-support/pull/49) Update release plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#47](https://github.com/universal-ember/test-support/pull/47) Upgrade pnpm ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* `test-app`, `@universal-ember/test-support`
+  * [#46](https://github.com/universal-ember/test-support/pull/46) Only use embroider in the test app ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* `test-app`
+  * [#48](https://github.com/universal-ember/test-support/pull/48) Fix ember try ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2024-03-13)
 
 @universal-ember/test-support 0.2.0 (minor)
