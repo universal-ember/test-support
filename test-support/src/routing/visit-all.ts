@@ -108,10 +108,12 @@ export async function visitAllLinks(
     debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
 
     await click(link);
-    assert.ok(
-      currentURL().startsWith(toVisit.href),
-      `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
-    );
+    assert.pushResult({
+      result: currentURL().startsWith(toVisit.href),
+      actual: currentURL(),
+      expected: toVisit.href,
+      message: `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
+    });
     visited.add(key);
 
     if (callback) {
