@@ -2,6 +2,17 @@
 
 ## Release (2024-11-11)
 
+@universal-ember/test-support 0.4.0 (minor)
+
+#### :rocket: Enhancement
+* `@universal-ember/test-support`
+  * [#53](https://github.com/universal-ember/test-support/pull/53) Better assertion logging ([@rtablada](https://github.com/rtablada))
+
+#### Committers: 1
+- Ryan Tablada ([@rtablada](https://github.com/rtablada))
+
+## Release (2024-11-11)
+
 @universal-ember/test-support 0.3.1 (patch)
 
 #### :bug: Bug Fix
