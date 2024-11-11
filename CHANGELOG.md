@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2024-11-11)
+
+@universal-ember/test-support 0.3.1 (patch)
+
+#### :bug: Bug Fix
+* `@universal-ember/test-support`
+  * [#52](https://github.com/universal-ember/test-support/pull/52) Fix URL error with relative paths and new URL ([@rtablada](https://github.com/rtablada))
+
+#### Committers: 1
+- Ryan Tablada ([@rtablada](https://github.com/rtablada))
+
 ## Release (2024-11-07)
 
 @universal-ember/test-support 0.3.0 (minor)
