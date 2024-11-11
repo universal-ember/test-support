@@ -28,7 +28,8 @@ function findInAppLinks(): InAppLink[] {
     if (!href) continue;
     if (href.startsWith('http')) continue;
 
-    const url = new URL(href, window.location.href);
+    const current = new URL(currentURL(), window.location.origin);
+    const url = new URL(href, current);
     const withoutDomain = `${url.pathname}${url.search}${url.hash}`;
 
     results.push({
