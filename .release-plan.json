@@ -1,17 +1,8 @@
 {
   "solution": {
     "@universal-ember/test-support": {
-      "impact": "minor",
-      "oldVersion": "0.3.1",
-      "newVersion": "0.4.0",
-      "constraints": [
-        {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        }
-      ],
-      "pkgJSONPath": "./test-support/package.json"
+      "oldVersion": "0.4.0"
     }
   },
-  "description": "## Release (2024-11-11)\n\n@universal-ember/test-support 0.4.0 (minor)\n\n#### :rocket: Enhancement\n* `@universal-ember/test-support`\n  * [#53](https://github.com/universal-ember/test-support/pull/53) Better assertion logging ([@rtablada](https://github.com/rtablada))\n\n#### Committers: 1\n- Ryan Tablada ([@rtablada](https://github.com/rtablada))\n"
+  "description": "\n\n\n\n"
 }
