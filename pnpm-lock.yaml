@@ -35,6 +35,9 @@ importers:
       expect-type:
         specifier: ^0.18.0
         version: 0.18.0
+    dependenciesMeta:
+      '@universal-ember/test-support':
+        injected: true
     devDependencies:
       '@babel/core':
         specifier: ^7.23.7
@@ -270,9 +273,6 @@ importers:
       webpack:
         specifier: ^5.89.0
         version: 5.99.5
-    dependenciesMeta:
-      '@universal-ember/test-support':
-        injected: true
 
   test-support:
     dependencies:
