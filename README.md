@@ -28,6 +28,28 @@ import { noop } from '@universal-ember/test-support';
 </template>
 ```
 
+## `refresh`
+
+Simulates refreshing the page without reloading the test window
+
+```js
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { currentURL, visit } from '@ember/test-helpers';
+
+import { refresh } from '@universal-ember/test-support';
+
+module('refresh', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('are visitable without error', async function (assert) {
+    await visit('/foo');
+    await refresh(this);
+    assert.strictEqual(currentURL(), '/foo');
+  });
+});
+```
+
 ## `visitAllLinks`
 
 Will visit all links, recursively, exhausting every link in your app (excluding external links).
