@@ -6,6 +6,7 @@ import {
   setupApplicationContext,
   visit,
   currentURL,
+  settled,
 } from '@ember/test-helpers';
 
 /**
@@ -16,8 +17,17 @@ import {
 export async function refresh(context: any) {
   const url = currentURL();
 
+  await settled();
+
   await teardownContext(context);
+  await settled();
+
   await setupContext(context);
+  await settled();
+
   await setupApplicationContext(context);
+  await settled();
+
+  // Has settled built in
   await visit(url);
 }
