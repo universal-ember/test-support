@@ -14,5 +14,5 @@
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2025-05-28)\n\n* @universal-ember/test-support 0.5.1 (patch)\n\n#### :house: Internal\n* `@universal-ember/test-support`\n  * [#87](https://github.com/universal-ember/test-support/pull/87) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2025-05-28)\n\n* @universal-ember/test-support 0.5.1 (patch) \n\n#### :house: Internal\n* `@universal-ember/test-support`\n  * [#87](https://github.com/universal-ember/test-support/pull/87) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

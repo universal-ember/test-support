@@ -6,7 +6,7 @@
     "ember-addon"
   ],
   "repository": {
-    "repo": "https://github.com/universal-ember/test-support.git",
+    "url": "https://github.com/universal-ember/test-support.git",
     "directory": "test-support"
   },
   "license": "MIT",
