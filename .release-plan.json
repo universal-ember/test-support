@@ -2,16 +2,20 @@
   "solution": {
     "@universal-ember/test-support": {
       "impact": "minor",
-      "oldVersion": "0.3.1",
-      "newVersion": "0.4.0",
+      "oldVersion": "0.4.0",
+      "newVersion": "0.5.0",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :memo: Documentation"
         }
       ],
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2024-11-11)\n\n@universal-ember/test-support 0.4.0 (minor)\n\n#### :rocket: Enhancement\n* `@universal-ember/test-support`\n  * [#53](https://github.com/universal-ember/test-support/pull/53) Better assertion logging ([@rtablada](https://github.com/rtablada))\n\n#### Committers: 1\n- Ryan Tablada ([@rtablada](https://github.com/rtablada))\n"
+  "description": "## Release (2025-05-28)\n\n@universal-ember/test-support 0.5.0 (minor)\n\n#### :rocket: Enhancement\n* `test-app`, `@universal-ember/test-support`\n  * [#85](https://github.com/universal-ember/test-support/pull/85) Add refresh ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#86](https://github.com/universal-ember/test-support/pull/86) Add noop and fill out README ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :memo: Documentation\n* `test-app`, `@universal-ember/test-support`\n  * [#86](https://github.com/universal-ember/test-support/pull/86) Add noop and fill out README ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

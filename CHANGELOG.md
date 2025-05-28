@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2025-05-28)
+
+@universal-ember/test-support 0.5.0 (minor)
+
+#### :rocket: Enhancement
+* `test-app`, `@universal-ember/test-support`
+  * [#85](https://github.com/universal-ember/test-support/pull/85) Add refresh ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#86](https://github.com/universal-ember/test-support/pull/86) Add noop and fill out README ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :memo: Documentation
+* `test-app`, `@universal-ember/test-support`
+  * [#86](https://github.com/universal-ember/test-support/pull/86) Add noop and fill out README ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2024-11-11)
 
 @universal-ember/test-support 0.4.0 (minor)
