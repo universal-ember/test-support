@@ -5,7 +5,10 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": {
+    "repo": "https://github.com/universal-ember/test-support.git",
+    "directory": "test-support"
+  },
   "license": "MIT",
   "author": "",
   "exports": {
