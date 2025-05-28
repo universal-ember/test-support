@@ -1,26 +1,56 @@
 # test-support
 
-[Short description of the addon.]
+Common utilities for every app to help making testing easier.
 
-## Compatibility
 
-- Ember.js v4.12 or above
-- Embroider or ember-auto-import v2
+## `getService`
 
-## Installation
+A typed way to get a service.
 
+```js
+import { getService } from '@universal-ember/test-support';
+
+test('can get a service', async function (assert) {
+  let router = getService('router');
+  //  ^ RouterService
+});
 ```
-ember install test-support
+
+## `noop`
+
+a no-op function. literally does nothing.
+
+```gjs
+import { noop } from '@universal-ember/test-support';
+
+<template>
+  {{ ( noop ) }}
+</template>
 ```
 
-## Usage
+## `visitAllLinks`
 
-[Longer description of how to use the addon in apps.]
+Will visit all links, recursively, exhausting every link in your app (excluding external links).
 
-## Contributing
+This is helpful for making sure that no un-tested pages have errors.
 
-See the [Contributing](CONTRIBUTING.md) guide for details.
+```js
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
-## License
+import { visitAllLinks } from '@universal-ember/test-support';
 
-This project is licensed under the [MIT License](LICENSE.md).
+module('All Links', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('are visitable without error', async function (assert) {
+    const size1 = await visitAllLinks();
+    const size2 = await visitAllLinks((url) => {
+      assert.ok(url);
+    });
+
+    assert.ok(size1 > 0, 'The test app has links');
+    assert.ok(size2 > 0, 'The test app has links');
+  });
+});
+```
