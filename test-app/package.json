@@ -27,7 +27,7 @@
     "@babel/core": "^7.23.7",
     "@ember/optional-features": "^2.0.0",
     "@ember/string": "^4.0.0",
-    "@ember/test-helpers": "^4.0.4",
+    "@ember/test-helpers": "^5.2.2",
     "@embroider/compat": "^3.7.0",
     "@embroider/core": "^3.4.19",
     "@embroider/test-setup": "^4.0.0",
