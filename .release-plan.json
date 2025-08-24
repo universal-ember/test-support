@@ -1,18 +1,8 @@
 {
   "solution": {
     "@universal-ember/test-support": {
-      "impact": "patch",
-      "oldVersion": "0.5.0",
-      "newVersion": "0.5.1",
-      "tagName": "latest",
-      "constraints": [
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
-        }
-      ],
-      "pkgJSONPath": "./test-support/package.json"
+      "oldVersion": "0.5.1"
     }
   },
-  "description": "## Release (2025-05-28)\n\n* @universal-ember/test-support 0.5.1 (patch) \n\n#### :house: Internal\n* `@universal-ember/test-support`\n  * [#87](https://github.com/universal-ember/test-support/pull/87) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "\n\n\n\n"
 }
