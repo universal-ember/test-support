@@ -46,7 +46,7 @@ const assert = QUnit.assert;
 
 export async function visitAllLinks(
   callback?: (url: string) => void | Promise<void>,
-  knownRedirects?: Record<string, string>;
+  knownRedirects?: Record<string, string>,
 ) {
   /**
    * string of "on::target"
