@@ -24,7 +24,7 @@
     "prettier-plugin-ember-template-tag": "^1.1.0",
     "release-plan": "^0.17.0"
   },
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.2",
   "pnpm": {
     "overrides": {
       "@ember/test-helpers": "^5.0.0"
