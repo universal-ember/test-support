@@ -111,7 +111,7 @@ export async function visitAllLinks(
     await click(link);
 
     const current = currentURL();
-    const expected = knownRedirects?.[current] ?? toVisit.href;
+    const expected = knownRedirects?.[toVisit.href] ?? toVisit.href;
 
     assert.pushResult({
       result: current.startsWith(expected),
