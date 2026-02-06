@@ -1,5 +1,19 @@
 # Changelog
 
+## Release (2026-02-06)
+
+* @universal-ember/test-support 0.6.0 (minor)
+
+#### :rocket: Enhancement
+* `@universal-ember/test-support`
+  * [#110](https://github.com/universal-ember/test-support/pull/110) Support custom known redirects in visitAll ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#111](https://github.com/universal-ember/test-support/pull/111) update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2025-05-28)
 
 * @universal-ember/test-support 0.5.1 (patch)

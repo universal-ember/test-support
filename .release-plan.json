@@ -1,18 +1,18 @@
 {
   "solution": {
     "@universal-ember/test-support": {
-      "impact": "patch",
-      "oldVersion": "0.5.0",
-      "newVersion": "0.5.1",
+      "impact": "minor",
+      "oldVersion": "0.5.1",
+      "newVersion": "0.6.0",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2025-05-28)\n\n* @universal-ember/test-support 0.5.1 (patch) \n\n#### :house: Internal\n* `@universal-ember/test-support`\n  * [#87](https://github.com/universal-ember/test-support/pull/87) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-02-06)\n\n* @universal-ember/test-support 0.6.0 (minor)\n\n#### :rocket: Enhancement\n* `@universal-ember/test-support`\n  * [#110](https://github.com/universal-ember/test-support/pull/110) Support custom known redirects in visitAll ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* [#111](https://github.com/universal-ember/test-support/pull/111) update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }
