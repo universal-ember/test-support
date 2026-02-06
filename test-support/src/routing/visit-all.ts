@@ -46,6 +46,7 @@ const assert = QUnit.assert;
 
 export async function visitAllLinks(
   callback?: (url: string) => void | Promise<void>,
+  knownRedirects?: Record<string, string>,
 ) {
   /**
    * string of "on::target"
@@ -108,10 +109,14 @@ export async function visitAllLinks(
     debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
 
     await click(link);
+
+    const current = currentURL();
+    const expected = knownRedirects?.[current] ?? toVisit.href;
+
     assert.pushResult({
-      result: currentURL().startsWith(toVisit.href),
-      actual: currentURL(),
-      expected: toVisit.href,
+      result: current.startsWith(expected),
+      actual: current,
+      expected: expected,
       message: `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
     });
     visited.add(key);
