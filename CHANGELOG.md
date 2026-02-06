@@ -2,6 +2,17 @@
 
 ## Release (2026-02-06)
 
+* @universal-ember/test-support 0.6.1 (patch)
+
+#### :bug: Bug Fix
+* `@universal-ember/test-support`
+  * [#112](https://github.com/universal-ember/test-support/pull/112) Fix known redirects support in visitAll ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-02-06)
+
 * @universal-ember/test-support 0.6.0 (minor)
 
 #### :rocket: Enhancement
