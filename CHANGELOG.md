@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2026-02-10)
+
+* @universal-ember/test-support 0.7.0 (minor)
+
+#### :rocket: Enhancement
+* `@universal-ember/test-support`
+  * [#114](https://github.com/universal-ember/test-support/pull/114) visitAllLinks: add support for rootURL ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-02-06)
 
 * @universal-ember/test-support 0.6.1 (patch)
