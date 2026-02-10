@@ -64,6 +64,8 @@ export async function visitAllLinks(
 
   debugAssert(`Could not find the router service`, router);
 
+  const rootURL = router.rootURL;
+
   while (queue.length > 0) {
     const toVisit = queue.shift();
 
@@ -110,7 +112,8 @@ export async function visitAllLinks(
 
     await click(link);
 
-    const current = currentURL();
+    const current =
+      rootURL.replace(/\/$/, '') + '/' + currentURL().replace(/^\//, '');
     const expected = knownRedirects?.[toVisit.href] ?? toVisit.href;
 
     assert.pushResult({
