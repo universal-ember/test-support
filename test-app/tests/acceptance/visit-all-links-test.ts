@@ -3,14 +3,29 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { visitAllLinks } from '@universal-ember/test-support';
 
+/**
+ * The application template links /inert-demo-target, whose route aborts the
+ * transition on purpose (the pattern docs sites use so a demo's links look
+ * real while clicking one keeps the reader in place). It is not meaningfully
+ * visitable, so every crawl here skips it — which is what `shouldVisit` is
+ * for.
+ */
+const SKIP_INERT = {
+  shouldVisit: (url: string) => !url.startsWith('/inert-demo-target'),
+};
+
 module('All Links', function (hooks) {
   setupApplicationTest(hooks);
 
   test('are visitable without error', async function (assert) {
-    const size1 = await visitAllLinks();
-    const size2 = await visitAllLinks((url) => {
-      assert.ok(url);
-    });
+    const size1 = await visitAllLinks(undefined, undefined, SKIP_INERT);
+    const size2 = await visitAllLinks(
+      (url) => {
+        assert.ok(url);
+      },
+      undefined,
+      SKIP_INERT,
+    );
 
     assert.ok(size1 > 0, 'The test app has links');
     assert.ok(size2 > 0, 'The test app has links');
@@ -29,13 +44,17 @@ module('All Links', function (hooks) {
     // must be one the router can serve.
     const visited: string[] = [];
 
-    await visitAllLinks((url) => {
-      visited.push(url);
+    await visitAllLinks(
+      (url) => {
+        visited.push(url);
 
-      const isNonSPA = url.startsWith('mailto:') || url.endsWith('.html');
+        const isNonSPA = url.startsWith('mailto:') || url.endsWith('.html');
 
-      assert.false(isNonSPA, `${url} is a route the router handles`);
-    });
+        assert.false(isNonSPA, `${url} is a route the router handles`);
+      },
+      undefined,
+      SKIP_INERT,
+    );
 
     assert.ok(visited.length > 0, 'the SPA links were still visited');
   });
@@ -55,14 +74,21 @@ module('All Links', function (hooks) {
     console.warn = (...args: unknown[]) => warnings.push(args.join(' '));
 
     try {
-      await visitAllLinks((url) => {
-        visited.push(url);
-      });
+      await visitAllLinks(
+        (url) => {
+          visited.push(url);
+        },
+        undefined,
+        SKIP_INERT,
+      );
     } finally {
       console.warn = originalWarn;
     }
 
-    assert.true(visited.includes('/docs/other'), `visited: ${visited.join(', ')}`);
+    assert.true(
+      visited.includes('/docs/other'),
+      `visited: ${visited.join(', ')}`,
+    );
 
     const warning = warnings.find((w) => w.includes('Relative href "other"'));
 
@@ -81,18 +107,26 @@ module('All Links', function (hooks) {
     const viaVisit: string[] = [];
     const viaClick: string[] = [];
 
-    await visitAllLinks((url) => {
-      viaVisit.push(url);
-    });
+    await visitAllLinks(
+      (url) => {
+        viaVisit.push(url);
+      },
+      undefined,
+      SKIP_INERT,
+    );
     await visitAllLinks(
       (url) => {
         viaClick.push(url);
       },
       undefined,
-      { mode: 'click' },
+      { ...SKIP_INERT, mode: 'click' },
     );
 
-    assert.deepEqual(viaClick.sort(), viaVisit.sort(), 'both modes crawl the same URLs');
+    assert.deepEqual(
+      viaClick.sort(),
+      viaVisit.sort(),
+      'both modes crawl the same URLs',
+    );
   });
 
   test('each target is visited once', async function (assert) {
@@ -101,9 +135,13 @@ module('All Links', function (hooks) {
     // every page, and pair-keying makes the crawl quadratic in app size.
     const visited: string[] = [];
 
-    await visitAllLinks((url) => {
-      visited.push(url);
-    });
+    await visitAllLinks(
+      (url) => {
+        visited.push(url);
+      },
+      undefined,
+      SKIP_INERT,
+    );
 
     const paths = visited.map((url) => url.split('#')[0]);
 
@@ -111,6 +149,35 @@ module('All Links', function (hooks) {
       new Set(paths).size,
       paths.length,
       `no target is visited twice: ${paths.join(', ')}`,
+    );
+  });
+
+  test('shouldVisit filters what the crawl reaches', async function (assert) {
+    const visited: string[] = [];
+
+    await visitAllLinks(
+      (url) => {
+        visited.push(url);
+      },
+      undefined,
+      SKIP_INERT,
+    );
+
+    assert.false(
+      visited.some((url) => url.startsWith('/inert-demo-target')),
+      'the filtered-out target was never visited',
+    );
+    assert.true(visited.length > 0, 'everything else still was');
+
+    // Filtering everything out crawls nothing (and asserts nothing).
+    const size = await visitAllLinks(undefined, undefined, {
+      shouldVisit: () => false,
+    });
+
+    assert.strictEqual(
+      size,
+      0,
+      'a filter that rejects everything visits nothing',
     );
   });
 });
