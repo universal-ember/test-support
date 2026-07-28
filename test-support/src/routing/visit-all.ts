@@ -69,7 +69,7 @@ export async function visitAllLinks(
   knownRedirects?: Record<string, string>,
 ) {
   /**
-   * string of "on::target"
+   * app-relative target paths (without hash)
    */
   const visited = new Set();
   let returnTo = '/';
@@ -110,7 +110,12 @@ export async function visitAllLinks(
       continue;
     }
 
-    const key = `${currentURL()}::${nonHashPart}`;
+    // Keyed on the target alone: this crawl answers "is every reachable URL
+    // visitable?", so one visit per target suffices. Keying on
+    // (current page, target) pairs re-visits every target from every page
+    // that links it — quadratic in the size of the app (shared nav links
+    // appear on every page), which times out on documentation-sized apps.
+    const key = nonHashPart;
 
     if (visited.has(key)) continue;
 
@@ -130,16 +135,40 @@ export async function visitAllLinks(
 
     debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
 
+    /**
+     * The click navigates by `element.href`, which the browser resolved
+     * against the test page's URL (e.g. `/tests`) — NOT against the app's
+     * current route the way a production visit would (there, the address bar
+     * is the current route). A relative href would therefore navigate
+     * somewhere the real app never goes. We already resolved the target
+     * against `currentURL()` when the link was encountered, so point the
+     * anchor at that; the click then exercises the real
+     * properLinks-and-router path with the production URL.
+     */
+    if (!toVisit.original.startsWith('/')) {
+      console.warn(
+        `[visitAllLinks] Relative href "${toVisit.original}" found on ${returnTo}. ` +
+          `Relative hrefs resolve against the browser's URL rather than the app's current route, ` +
+          `so they only behave in a real full-page visit — they misresolve in this test harness ` +
+          `and under any mount where the address bar isn't the route (embeds, previews). ` +
+          `The crawler pointed this click at the resolved target instead. ` +
+          `Action: update the source document to link to "${toVisit.href}" directly.`,
+      );
+      link.setAttribute('href', toVisit.href);
+    }
+
     await click(link);
 
     const current =
       rootURL.replace(/\/$/, '') + '/' + currentURL().replace(/^\//, '');
     const expected = knownRedirects?.[toVisit.href] ?? toVisit.href;
+    // currentURL() never includes a #hash, so compare without it
+    const [expectedPath] = expected.split('#');
 
     assert.pushResult({
-      result: current.startsWith(expected),
+      result: current.startsWith(expectedPath ?? expected),
       actual: current,
-      expected: expected,
+      expected: expectedPath,
       message: `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
     });
     visited.add(key);

@@ -39,4 +39,56 @@ module('All Links', function (hooks) {
 
     assert.ok(visited.length > 0, 'the SPA links were still visited');
   });
+
+  test('relative links navigate against the current route, and warn', async function (assert) {
+    // /docs/page renders `<a href="other">`, which from /docs/page must land
+    // on /docs/other. The browser resolves the anchor's element.href against
+    // the TEST PAGE's url (/tests) — which would send the router to /other —
+    // so the crawler points the anchor at the currentURL-resolved target
+    // before clicking (and warns: relative hrefs are an authoring hazard the
+    // app author should fix). The navigation assertions inside visitAllLinks
+    // fail this test if the click lands anywhere else.
+    const visited: string[] = [];
+    const warnings: string[] = [];
+    const originalWarn = console.warn;
+
+    console.warn = (...args: unknown[]) => warnings.push(args.join(' '));
+
+    try {
+      await visitAllLinks((url) => {
+        visited.push(url);
+      });
+    } finally {
+      console.warn = originalWarn;
+    }
+
+    assert.true(visited.includes('/docs/other'), `visited: ${visited.join(', ')}`);
+
+    const warning = warnings.find((w) => w.includes('Relative href "other"'));
+
+    assert.true(Boolean(warning), 'warned about the relative href');
+    assert.true(
+      Boolean(warning?.includes('"/docs/other"')),
+      'the warning names the resolved target to author instead',
+    );
+  });
+
+  test('each target is visited once', async function (assert) {
+    // `visited` is keyed on the target path alone (not (page, target) pairs):
+    // shared links — like this app's application-template nav — appear on
+    // every page, and pair-keying makes the crawl quadratic in app size.
+    const visited: string[] = [];
+
+    await visitAllLinks((url) => {
+      visited.push(url);
+    });
+
+    const paths = visited.map((url) => url.split('#')[0]);
+
+    assert.strictEqual(
+      new Set(paths).size,
+      paths.length,
+      `no target is visited twice: ${paths.join(', ')}`,
+    );
+  });
 });
