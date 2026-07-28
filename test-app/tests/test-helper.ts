@@ -1,12 +1,52 @@
-import Application from 'test-app/app';
-import config from 'test-app/config/environment';
+import { getOwner } from '@ember/owner';
+import {
+  currentRouteName,
+  currentURL,
+  getSettledState,
+  resetOnerror,
+  setApplication,
+  visit,
+} from '@ember/test-helpers';
+import { getPendingWaiterState } from '@ember/test-waiters';
 import * as QUnit from 'qunit';
-import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
-import { start } from 'ember-qunit';
+import { setupEmberOnerrorValidation, start as qunitStart } from 'ember-qunit';
+import { setTesting } from '@embroider/macros';
 
-setApplication(Application.create(config.APP));
+import Application from '#app/app.ts';
+import config from '#config';
 
-setup(QUnit.assert);
+Object.assign(window, {
+  visit,
+  getSettledState,
+  getPendingWaiterState,
+  currentURL,
+  currentRouteName,
+  getOwner,
+  snapshotTimers: (label?: string) => {
+    console.debug(
+      label ?? 'snapshotTimers',
+      JSON.parse(
+        JSON.stringify({
+          settled: getSettledState(),
+          waiters: getPendingWaiterState(),
+        }),
+      ),
+    );
+  },
+});
 
-start();
+export function start() {
+  config.locationType = 'none';
+  config.APP.rootElement = '#ember-testing';
+  config.APP.autoboot = false;
+
+  setTesting(true);
+  setApplication(Application.create(config.APP));
+  setup(QUnit.assert);
+  setupEmberOnerrorValidation();
+
+  QUnit.testDone(resetOnerror);
+
+  qunitStart();
+}
