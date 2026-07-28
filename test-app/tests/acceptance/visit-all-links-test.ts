@@ -40,20 +40,37 @@ module('All Links', function (hooks) {
     assert.ok(visited.length > 0, 'the SPA links were still visited');
   });
 
-  test('relative links navigate against the current route', async function (assert) {
+  test('relative links navigate against the current route, and warn', async function (assert) {
     // /docs/page renders `<a href="other">`, which from /docs/page must land
     // on /docs/other. The browser resolves the anchor's element.href against
     // the TEST PAGE's url (/tests) — which would send the router to /other —
     // so the crawler points the anchor at the currentURL-resolved target
-    // before clicking. The navigation assertions inside visitAllLinks fail
-    // this test if the click lands anywhere else.
+    // before clicking (and warns: relative hrefs are an authoring hazard the
+    // app author should fix). The navigation assertions inside visitAllLinks
+    // fail this test if the click lands anywhere else.
     const visited: string[] = [];
+    const warnings: string[] = [];
+    const originalWarn = console.warn;
 
-    await visitAllLinks((url) => {
-      visited.push(url);
-    });
+    console.warn = (...args: unknown[]) => warnings.push(args.join(' '));
+
+    try {
+      await visitAllLinks((url) => {
+        visited.push(url);
+      });
+    } finally {
+      console.warn = originalWarn;
+    }
 
     assert.true(visited.includes('/docs/other'), `visited: ${visited.join(', ')}`);
+
+    const warning = warnings.find((w) => w.includes('Relative href "other"'));
+
+    assert.true(Boolean(warning), 'warned about the relative href');
+    assert.true(
+      Boolean(warning?.includes('"/docs/other"')),
+      'the warning names the resolved target to author instead',
+    );
   });
 
   test('each target is visited once', async function (assert) {

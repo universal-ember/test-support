@@ -146,6 +146,14 @@ export async function visitAllLinks(
      * properLinks-and-router path with the production URL.
      */
     if (!toVisit.original.startsWith('/')) {
+      console.warn(
+        `[visitAllLinks] Relative href "${toVisit.original}" found on ${returnTo}. ` +
+          `Relative hrefs resolve against the browser's URL rather than the app's current route, ` +
+          `so they only behave in a real full-page visit — they misresolve in this test harness ` +
+          `and under any mount where the address bar isn't the route (embeds, previews). ` +
+          `The crawler pointed this click at the resolved target instead. ` +
+          `Action: update the source document to link to "${toVisit.href}" directly.`,
+      );
       link.setAttribute('href', toVisit.href);
     }
 
