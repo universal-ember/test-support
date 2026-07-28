@@ -2,8 +2,8 @@
   "solution": {
     "@universal-ember/test-support": {
       "impact": "minor",
-      "oldVersion": "0.7.2",
-      "newVersion": "0.8.0",
+      "oldVersion": "0.8.0",
+      "newVersion": "0.9.0",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2026-07-28)\n\n* @universal-ember/test-support 0.8.0 (minor)\n\n#### :rocket: Enhancement\n* `@universal-ember/test-support`\n  * [#135](https://github.com/universal-ember/test-support/pull/135) [breaking] visitAllLinks: visit-mode crawls with one render per target (new default) ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-07-28)\n\n* @universal-ember/test-support 0.9.0 (minor)\n\n#### :rocket: Enhancement\n* `@universal-ember/test-support`\n  * [#137](https://github.com/universal-ember/test-support/pull/137) visitAllLinks: add a shouldVisit filter ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

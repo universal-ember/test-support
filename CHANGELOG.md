@@ -2,6 +2,17 @@
 
 ## Release (2026-07-28)
 
+* @universal-ember/test-support 0.9.0 (minor)
+
+#### :rocket: Enhancement
+* `@universal-ember/test-support`
+  * [#137](https://github.com/universal-ember/test-support/pull/137) visitAllLinks: add a shouldVisit filter ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-07-28)
+
 * @universal-ember/test-support 0.8.0 (minor)
 
 #### :rocket: Enhancement
