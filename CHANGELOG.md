@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2026-07-28)
+
+* @universal-ember/test-support 0.7.1 (patch)
+
+#### :bug: Bug Fix
+* `@universal-ember/test-support`
+  * [#131](https://github.com/universal-ember/test-support/pull/131) visitAllLinks: skip links the SPA router never handles ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#132](https://github.com/universal-ember/test-support/pull/132) Modernize the test harness: vite + ember-source 7 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+* [#130](https://github.com/universal-ember/test-support/pull/130) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## Release (2026-02-10)
 
 * @universal-ember/test-support 0.7.0 (minor)
