@@ -53,7 +53,8 @@
   },
   "dependencies": {
     "@ember/test-helpers": "^4.0.4 || ^5.2.2",
-    "@embroider/addon-shim": "^1.8.7"
+    "@embroider/addon-shim": "^1.8.7",
+    "should-handle-link": "^1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",

@@ -8,6 +8,7 @@ import {
   findAll,
 } from '@ember/test-helpers';
 import QUnit from 'qunit';
+import { shouldHandle } from 'should-handle-link';
 import type Owner from '@ember/owner';
 import type RouterService from '@ember/routing/router-service';
 
@@ -23,10 +24,29 @@ function findInAppLinks(): InAppLink[] {
   const allAnchorsOnThePage = findAll('a');
 
   for (const a of allAnchorsOnThePage) {
+    // `findAll('a')` can also match SVG `<a>`, whose `href` is an
+    // SVGAnimatedString the router (and shouldHandle) can't work with.
+    if (!(a instanceof HTMLAnchorElement)) continue;
+
     const href = a.getAttribute('href');
 
     if (!href) continue;
-    if (href.startsWith('http')) continue;
+
+    /**
+     * Links the SPA's router never handles are handled natively by the
+     * browser instead (new tab/window via `target`, download dialog,
+     * `mailto:`/`tel:`, cross-origin, `rel="external"`). Clicking them in a
+     * test can't change `currentURL()`, so they'd always be reported as
+     * failed navigations.
+     *
+     * `shouldHandle` is the predicate ember-primitives' @properLinks uses to
+     * decide whether the router handles a click, so the crawler visits
+     * exactly the set of links the router would. The fabricated click event
+     * carries the "plain left click" defaults (button 0, no modifier keys).
+     */
+    if (!shouldHandle(window.location.href, a, new MouseEvent('click'))) {
+      continue;
+    }
 
     const current = new URL(currentURL(), window.location.origin);
     const url = new URL(href, current);
