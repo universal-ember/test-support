@@ -13,6 +13,7 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('foo');
   this.route('hash-target');
+  this.route('inert-demo-target');
   this.route('docs', function () {
     this.route('page');
     this.route('other');

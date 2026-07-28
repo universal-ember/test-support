@@ -77,6 +77,24 @@ interface VisitAllLinksOptions {
    *   apps that need per-link click fidelity.
    */
   mode?: 'visit' | 'click';
+
+  /**
+   * Decides whether a discovered target is crawled at all. Return `false` to
+   * skip it — the crawl neither navigates to it nor asserts on it, and its
+   * own links are not discovered through it.
+   *
+   * For links the app deliberately refuses to navigate — e.g. demo links
+   * whose route calls `transition.abort()`, or areas under test elsewhere:
+   *
+   * ```js
+   * await visitAllLinks(undefined, undefined, {
+   *   shouldVisit: (url) => !url.startsWith('/demo-targets/'),
+   * });
+   * ```
+   *
+   * Receives the app-relative target (hash included, as authored).
+   */
+  shouldVisit?: (url: string) => boolean;
 }
 
 export async function visitAllLinks(
@@ -85,6 +103,7 @@ export async function visitAllLinks(
   options?: VisitAllLinksOptions,
 ) {
   const mode = options?.mode ?? 'visit';
+  const shouldVisit = options?.shouldVisit ?? (() => true);
   /**
    * app-relative target paths (without hash)
    */
@@ -135,6 +154,8 @@ export async function visitAllLinks(
     const key = nonHashPart;
 
     if (visited.has(key)) continue;
+
+    if (!shouldVisit(toVisit.href)) continue;
 
     const result = router.recognize(toVisit.href);
 
