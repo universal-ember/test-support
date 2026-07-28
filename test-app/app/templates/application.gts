@@ -7,6 +7,10 @@
   <a href="/does-not-exist">here</a>
   <a href="#title">here</a>
   <a href="/#title">/ here</a>
+  <a href="/docs/page">a nested page (with a relative link on it)</a>
+  {{! a page+hash link: currentURL() after the click has no #hash, so the
+      navigation assertion must compare without it }}
+  <a href="/hash-target#down">hash link</a>
 
   {{! non-SPA links: handled by the browser, not the router — visitAllLinks must skip them }}
   <a href="/foo" target="_blank" rel="noopener noreferrer">new tab</a>

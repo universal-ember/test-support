@@ -39,4 +39,39 @@ module('All Links', function (hooks) {
 
     assert.ok(visited.length > 0, 'the SPA links were still visited');
   });
+
+  test('relative links navigate against the current route', async function (assert) {
+    // /docs/page renders `<a href="other">`, which from /docs/page must land
+    // on /docs/other. The browser resolves the anchor's element.href against
+    // the TEST PAGE's url (/tests) — which would send the router to /other —
+    // so the crawler points the anchor at the currentURL-resolved target
+    // before clicking. The navigation assertions inside visitAllLinks fail
+    // this test if the click lands anywhere else.
+    const visited: string[] = [];
+
+    await visitAllLinks((url) => {
+      visited.push(url);
+    });
+
+    assert.true(visited.includes('/docs/other'), `visited: ${visited.join(', ')}`);
+  });
+
+  test('each target is visited once', async function (assert) {
+    // `visited` is keyed on the target path alone (not (page, target) pairs):
+    // shared links — like this app's application-template nav — appear on
+    // every page, and pair-keying makes the crawl quadratic in app size.
+    const visited: string[] = [];
+
+    await visitAllLinks((url) => {
+      visited.push(url);
+    });
+
+    const paths = visited.map((url) => url.split('#')[0]);
+
+    assert.strictEqual(
+      new Set(paths).size,
+      paths.length,
+      `no target is visited twice: ${paths.join(', ')}`,
+    );
+  });
 });
