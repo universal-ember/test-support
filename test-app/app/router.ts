@@ -1,7 +1,8 @@
 import EmberRouter from '@ember/routing/router';
-import config from 'test-app/config/environment';
 
 import { properLinks } from 'ember-primitives/proper-links';
+
+import config from '#config';
 
 @properLinks
 export default class Router extends EmberRouter {
@@ -10,6 +11,5 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  // Add route declarations here
   this.route('foo');
 });

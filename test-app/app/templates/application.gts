@@ -1,0 +1,10 @@
+<template>
+  <h2 id="title">Welcome to Ember</h2>
+
+  {{outlet}}
+
+  <a href="/foo">here</a>
+  <a href="/does-not-exist">here</a>
+  <a href="#title">here</a>
+  <a href="/#title">/ here</a>
+</template>

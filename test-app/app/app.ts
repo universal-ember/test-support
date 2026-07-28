@@ -1,12 +1,8 @@
-import Application from '@ember/application';
-import Resolver from 'ember-resolver';
-import loadInitializers from 'ember-load-initializers';
-import config from 'test-app/config/environment';
+import Application from 'ember-strict-application-resolver';
 
 export default class App extends Application {
-  modulePrefix = config.modulePrefix;
-  podModulePrefix = config.podModulePrefix;
-  Resolver = Resolver;
+  modules = {
+    ...import.meta.glob('./router.*', { eager: true }),
+    ...import.meta.glob('./templates/**/*', { eager: true }),
+  };
 }
-
-loadInitializers(App, config.modulePrefix);
