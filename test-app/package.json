@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@universal-ember/test-support": "workspace:*",
+    "ember-modifier": "^4.3.0",
+    "ember-primitives": "^0.61.1",
+    "ember-resources": "^7.1.0",
     "expect-type": "^0.18.0"
   },
   "devDependencies": {
