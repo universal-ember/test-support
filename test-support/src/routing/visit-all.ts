@@ -64,10 +64,27 @@ function findInAppLinks(): InAppLink[] {
 
 const assert = QUnit.assert;
 
+interface VisitAllLinksOptions {
+  /**
+   * How each discovered target is navigated to:
+   *
+   * - `'visit'` (the default): `visit(target)` directly. One page render per
+   *   unique target — the cheapest possible full crawl.
+   * - `'click'`: return to the page the link was found on and click the
+   *   actual anchor, exercising the app's link-interception (e.g.
+   *   `@properLinks`) for every link. Twice the page renders of `'visit'`
+   *   (each processed link re-renders its source page), so reserve it for
+   *   apps that need per-link click fidelity.
+   */
+  mode?: 'visit' | 'click';
+}
+
 export async function visitAllLinks(
   callback?: (url: string) => void | Promise<void>,
   knownRedirects?: Record<string, string>,
+  options?: VisitAllLinksOptions,
 ) {
+  const mode = options?.mode ?? 'visit';
   /**
    * app-relative target paths (without hash)
    */
@@ -129,35 +146,55 @@ export async function visitAllLinks(
       continue;
     }
 
-    await visit(returnTo);
-
-    const link = find(toVisit.selector);
-
-    debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
-
-    /**
-     * The click navigates by `element.href`, which the browser resolved
-     * against the test page's URL (e.g. `/tests`) — NOT against the app's
-     * current route the way a production visit would (there, the address bar
-     * is the current route). A relative href would therefore navigate
-     * somewhere the real app never goes. We already resolved the target
-     * against `currentURL()` when the link was encountered, so point the
-     * anchor at that; the click then exercises the real
-     * properLinks-and-router path with the production URL.
-     */
     if (!toVisit.original.startsWith('/')) {
       console.warn(
         `[visitAllLinks] Relative href "${toVisit.original}" found on ${returnTo}. ` +
           `Relative hrefs resolve against the browser's URL rather than the app's current route, ` +
           `so they only behave in a real full-page visit — they misresolve in this test harness ` +
           `and under any mount where the address bar isn't the route (embeds, previews). ` +
-          `The crawler pointed this click at the resolved target instead. ` +
+          `The crawler navigated to the resolved target instead. ` +
           `Action: update the source document to link to "${toVisit.href}" directly.`,
       );
-      link.setAttribute('href', toVisit.href);
     }
 
-    await click(link);
+    if (mode === 'click') {
+      await visit(returnTo);
+
+      const link = find(toVisit.selector);
+
+      debugAssert(`link exists via selector \`${toVisit.selector}\``, link);
+
+      /**
+       * The click navigates by `element.href`, which the browser resolved
+       * against the test page's URL (e.g. `/tests`) — NOT against the app's
+       * current route the way a production visit would (there, the address
+       * bar is the current route). A relative href would therefore navigate
+       * somewhere the real app never goes. We already resolved the target
+       * against `currentURL()` when the link was encountered, so point the
+       * anchor at that; the click then exercises the real
+       * properLinks-and-router path with the production URL.
+       */
+      if (!toVisit.original.startsWith('/')) {
+        link.setAttribute('href', toVisit.href);
+      }
+
+      await click(link);
+    } else {
+      try {
+        await visit(nonHashPart ?? toVisit.href);
+      } catch (error) {
+        // visit() rejects when the route errors (click-mode surfaces the
+        // same problem as a URL mismatch via the app's error substate)
+        assert.pushResult({
+          result: false,
+          actual: String(error),
+          expected: nonHashPart,
+          message: `Navigation was successful: to:${toVisit.original}, from:${returnTo}`,
+        });
+        visited.add(key);
+        continue;
+      }
+    }
 
     const current =
       rootURL.replace(/\/$/, '') + '/' + currentURL().replace(/^\//, '');

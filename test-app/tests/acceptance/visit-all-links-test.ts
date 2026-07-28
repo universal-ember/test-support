@@ -73,6 +73,28 @@ module('All Links', function (hooks) {
     );
   });
 
+  test('click mode crawls the same targets as visit mode', async function (assert) {
+    // 'visit' (the default) navigates straight to each target — one render
+    // per unique URL. 'click' returns to the source page and clicks the real
+    // anchor (including the relative-href rewrite). Same reachability either
+    // way.
+    const viaVisit: string[] = [];
+    const viaClick: string[] = [];
+
+    await visitAllLinks((url) => {
+      viaVisit.push(url);
+    });
+    await visitAllLinks(
+      (url) => {
+        viaClick.push(url);
+      },
+      undefined,
+      { mode: 'click' },
+    );
+
+    assert.deepEqual(viaClick.sort(), viaVisit.sort(), 'both modes crawl the same URLs');
+  });
+
   test('each target is visited once', async function (assert) {
     // `visited` is keyed on the target path alone (not (page, target) pairs):
     // shared links — like this app's application-template nav — appear on
