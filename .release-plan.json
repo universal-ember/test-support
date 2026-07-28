@@ -2,8 +2,8 @@
   "solution": {
     "@universal-ember/test-support": {
       "impact": "patch",
-      "oldVersion": "0.7.0",
-      "newVersion": "0.7.1",
+      "oldVersion": "0.7.1",
+      "newVersion": "0.7.2",
       "tagName": "latest",
       "constraints": [
         {
@@ -14,5 +14,5 @@
       "pkgJSONPath": "./test-support/package.json"
     }
   },
-  "description": "## Release (2026-07-28)\n\n* @universal-ember/test-support 0.7.1 (patch)\n\n#### :bug: Bug Fix\n* `@universal-ember/test-support`\n  * [#131](https://github.com/universal-ember/test-support/pull/131) visitAllLinks: skip links the SPA router never handles ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### :house: Internal\n* [#132](https://github.com/universal-ember/test-support/pull/132) Modernize the test harness: vite + ember-source 7 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n* [#130](https://github.com/universal-ember/test-support/pull/130) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+  "description": "## Release (2026-07-28)\n\n* @universal-ember/test-support 0.7.2 (patch)\n\n#### :bug: Bug Fix\n* `@universal-ember/test-support`\n  * [#133](https://github.com/universal-ember/test-support/pull/133) visitAllLinks: production-faithful navigation for relative and hash links; linear crawl ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n\n#### Committers: 1\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
 }

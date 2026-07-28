@@ -2,6 +2,17 @@
 
 ## Release (2026-07-28)
 
+* @universal-ember/test-support 0.7.2 (patch)
+
+#### :bug: Bug Fix
+* `@universal-ember/test-support`
+  * [#133](https://github.com/universal-ember/test-support/pull/133) visitAllLinks: production-faithful navigation for relative and hash links; linear crawl ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
+## Release (2026-07-28)
+
 * @universal-ember/test-support 0.7.1 (patch)
 
 #### :bug: Bug Fix
