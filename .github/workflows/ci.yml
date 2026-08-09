@@ -16,7 +16,7 @@ jobs:
     name: "Lints"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: wyvox/action-setup-pnpm@v3
         with:
           node-version: 24
@@ -27,7 +27,7 @@ jobs:
     name: "Tests"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: wyvox/action-setup-pnpm@v3
         with:
           node-version: 24
